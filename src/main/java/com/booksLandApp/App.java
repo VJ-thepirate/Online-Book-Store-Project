@@ -17,8 +17,8 @@ public class App {
 				System.out.println("*******************************");
 				System.out.println("          Book's Land          ");
 				System.out.println("*******************************");
-				System.out.println("1-> ADMIN");
-				System.out.println("2-> CUSTOMER");
+				System.out.println("1-> ADMIN LOGIN");
+				System.out.println("2-> CUSTOMER LOGIN");
 				int op = sc.nextInt();
 				if (op == 1) {
 					System.out.println("Please Enter UserName");
@@ -28,7 +28,7 @@ public class App {
 
 					if (aob.login(username, Password)) {
 						System.out.println("=======================================================================");
-						System.out.println("                       Logged in successfully!!             ");
+						System.out.println("Login successfull!!");
 						System.out.println("=======================================================================");
 						System.out.println("1.Show Books\r\n" + "2.Add Books\r\n" + "3.Remove Books\r\n"
 								+ "4.Log Out\r\n");
@@ -73,8 +73,8 @@ public class App {
 					} else {
 						System.out.println("Username or Password is incorrect");
 					}
-
-				} else if (op == 2) {
+				}
+				 else if (op == 2) {
 					System.out.println("1->sign up (New customer)");
 					System.out.println("2->sign in (If already a customer)");
 					int op2 = sc.nextInt();
@@ -106,33 +106,35 @@ public class App {
 						if (up.login(username, Password)) {
 							System.out
 									.println("=======================================================================");
-							System.out.println("                       Login successfull!!                   ");
+							System.out.println("Login successfull!!");
 							System.out
 									.println("=======================================================================");
-							up.showBooks();
-							System.out.println("1.Buy Book\r\n"+"2.Order Status\r\n"+"3.Update Profile"+"4.LogOut");
+							System.out.println("1.Show Books\r\n" + "2.OrderStatus\r\n" 
+									+ "3.Profile Setting\r\n" + "4.Log Out\r\n");
 							int op3 = sc.nextInt();
 							if (op3 == 1) {
-
-								System.out.println("Please Enter The BookCode");
-								String bc = sc.next();
-								System.out.println("Please Enter the Bookname");
-								String bn = sc.next();
-								System.out.println("Please Enter the Quantity");
-								int qty = sc.nextInt();
-								System.out.println("Please Enter the Delivery Address");
-								String address = sc.next();
-								if (up.buyNow(bc, bn, qty, address)) {
-									System.out.println("Order Successfully Placed");
-								} else {
-									System.out.println("Problem in Placing Order");
-								}
-							} 
-							
-								 else if (op3 == 2) {
-									
-
+								up.showBooks();
+								System.out.println("1->Buy now");
+								int op4 = sc.nextInt();
+								if (op4 == 1) {
+									System.out.println("Please Enter The BookCode");
+									String bc = sc.next();
+									System.out.println("Please Enter the Bookname");
+									String bn = sc.next();
+									System.out.println("Please Enter the Quantity");
+									int qty = sc.nextInt();
+									System.out.println("Please Enter the Delivery Address");
+									String address = sc.next();
+									if (up.buyNow(bc, bn, qty, address)) {
+										System.out.println("Order Successfully Placed");
+									} else {
+										System.out.println("Problem in Placing Order");
+									}
 								
+							} 
+							}
+								else if (op3 == 2) {
+								up.orderStatus();
 							} else if (op3 == 3) {
 								System.out.println("Please Enter the User Name");
 								String us = sc.next();
@@ -149,26 +151,32 @@ public class App {
 								System.out.println("Please Enter the E-Mail");
 								String em = sc.next();
 								if (up.profileSetting(us, pass, name, add, lm, num, em)) {
-									System.out.println("Updated successfully");
+									System.out.println("Sign up successfully");
 								} else {
-									System.out.println("Problem in Updating Profile");
+									System.out.println("Problem in Sign Up");
 								}
 
-							} 
-							else if (op3==4) {
+							} else if (op3 == 4) {
 								if (up.logout()) {
-									status = false;
-									System.out.println("Logged Out");
+									System.out.println("Logged Out Successfully!!");
+								} else {
+									System.out.println("Problem in Log Out");
 								}
 							}
-						} else {
-							System.out.println("Problem in Login");
 						}
 					}
 				}
+				else {
+					System.out.println("please give valuable option");
 				}
-			 while (status);
-		} catch (Exception e) {
+					
+					
+			} while (status);
+				
+					
+		}
+				
+		 catch (Exception e) {
 			System.out.println("Wrong data!!");
 		}
 

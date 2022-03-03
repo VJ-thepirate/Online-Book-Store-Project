@@ -86,7 +86,7 @@ public class UserOperation {
 		else
 			return false;
 	}
-public void orederStatus() throws SQLException {
+public void orderStatus() throws SQLException {
 	PreparedStatement ps = conn.prepareStatement("select * from order_details");
 	ResultSet rs = ps.executeQuery();
 	while (rs.next()) {
